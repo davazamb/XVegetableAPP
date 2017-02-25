@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XVegetableAPP.Models;
 using XVegetableAPP.Services;
 
@@ -13,11 +15,17 @@ namespace XVegetableAPP.ViewModels
     {
         #region Attributes
         private ApiService apiService;
-
+        private NavigationService navigationService;
 
         #endregion
 
         #region Commands
+        public ICommand AddVegetableCommand { get { return new RelayCommand(AddVegetable); } }
+
+        private async void AddVegetable()
+        {
+            await navigationService.Navigate("NewVegetablePage");
+        }
 
         #endregion
 
@@ -26,6 +34,7 @@ namespace XVegetableAPP.ViewModels
         {
             apiService = new ApiService();
             Vegetables = new ObservableCollection<VegetableItemViewModel>();
+            navigationService = new NavigationService();
             LoadVegetables();
         }  
 

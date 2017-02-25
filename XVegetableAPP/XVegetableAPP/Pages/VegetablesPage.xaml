@@ -37,6 +37,6 @@
     </ListView.ItemTemplate>
   </ListView>
   <ContentPage.ToolbarItems>
-    <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddFlowerCommand}"/>
+    <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddVegetableCommand}"/>
   </ContentPage.ToolbarItems>    
 </ContentPage>
