@@ -5,37 +5,14 @@
              Title="Vegetables"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
   <ListView
-  ItemsSource="{Binding Vegetables}"
-  HasUnevenRows="True">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <Grid Padding="8">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"></ColumnDefinition>
-              <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Image
-              Source="icono.png"
-              VerticalOptions="Start"
-              WidthRequest="50"
-              HeightRequest="50"/>
-            <StackLayout Grid.Column="1">
-              <Label
-                TextColor="Black"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Text="{Binding Description}"/>
-              <Label
-                TextColor="Black"
-                VerticalOptions="Center"
-                Text="{Binding Price, StringFormat='{0:C2}'}"/>
-            </StackLayout>
-          </Grid>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
+   ItemTemplate="{StaticResource VegetablesDataTemplate}"
+   ItemsSource="{Binding Vegetables}"
+   HasUnevenRows="True"
+   IsPullToRefreshEnabled="True"
+   RefreshCommand="{Binding RefreshVegetablesCommand}"
+   IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
   </ListView>
+
   <ContentPage.ToolbarItems>
     <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddVegetableCommand}"/>
   </ContentPage.ToolbarItems>    

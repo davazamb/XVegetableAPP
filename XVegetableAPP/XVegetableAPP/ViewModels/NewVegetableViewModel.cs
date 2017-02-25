@@ -72,14 +72,14 @@ namespace XVegetableAPP.ViewModels
                 Price = Price,
             };
 
-            var result = await apiService.Post("http://vegetableapi.azurewebsites.net", "/api", "/Vegetables", newVegetable);
+            var response = await apiService.Post("http://vegetableapi.azurewebsites.net", "/api", "/Vegetables", newVegetable);
 
             IsRunning = false;
             IsEnabled = true;
 
-            if (!result.IsSuccess)
+            if (!response.IsSuccess)
             {
-                await dialogService.ShowMessage("Error", result.Message);
+                await dialogService.ShowMessage("Error", response.Message);
                 return;
             }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,27 @@ using XVegetableAPP.Services;
 
 namespace XVegetableAPP.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         #region Attributes
         private ApiService apiService;
         private NavigationService navigationService;
         private DialogService dialogService;
+        private bool isRefreshing;
 
         #endregion
 
         #region Commands
         public ICommand AddVegetableCommand { get { return new RelayCommand(AddVegetable); } }
+        public ICommand RefreshVegetablesCommand { get { return new RelayCommand(RefreshVegetables); } }
+
+        private void RefreshVegetables()
+        {
+            IsRefreshing = true;
+            LoadVegetables();
+            IsRefreshing = false;
+        }
+
 
         private async void AddVegetable()
         {
@@ -43,9 +54,7 @@ namespace XVegetableAPP.ViewModels
 
             //View Models
             Vegetables = new ObservableCollection<VegetableItemViewModel>();
-
-            //Load Data
-            LoadVegetables();
+                             
         }  
 
         #endregion
@@ -65,7 +74,7 @@ namespace XVegetableAPP.ViewModels
         private void ReloadVegetables(List<Vegetable> vegetables)
         {
             Vegetables.Clear();
-            foreach (var vegetable in vegetables)
+            foreach (var vegetable in vegetables.OrderBy(v => v.Description))
             {
                 Vegetables.Add(new VegetableItemViewModel
                 {
@@ -81,11 +90,28 @@ namespace XVegetableAPP.ViewModels
         #region Properties
         public ObservableCollection<VegetableItemViewModel> Vegetables { get; set; }
         public NewVegetableViewModel NewVegetable { get; set; }
+        public bool IsRefreshing
+        {
+            set
+            {
+                if (isRefreshing != value)
+                {
+                    isRefreshing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshing"));
+                }
+            }
+            get
+            {
+                return isRefreshing;
+            }
+        }
+
+
         #endregion
 
         #region Singleton
 
-        private static MainViewModel instance;
+        private static MainViewModel instance;            
 
         public static MainViewModel GetInstance()
         {
@@ -96,6 +122,12 @@ namespace XVegetableAPP.ViewModels
 
             return instance;
         }
+
+        #endregion
+
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 

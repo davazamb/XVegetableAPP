@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using XVegetableAPP.ViewModels;
 
 namespace XVegetableAPP.Pages
 {
@@ -13,6 +14,12 @@ namespace XVegetableAPP.Pages
         public VegetablesPage()
         {
             InitializeComponent();
+            var mainViewModel = MainViewModel.GetInstance();
+            base.Appearing += (object sender, EventArgs e) =>
+            {
+                mainViewModel.RefreshVegetablesCommand.Execute(this);
+            };
+
         }
     }
 }
