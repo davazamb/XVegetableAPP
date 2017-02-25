@@ -22,10 +22,12 @@
               HeightRequest="50"/>
             <StackLayout Grid.Column="1">
               <Label
+                TextColor="Black"
                 FontAttributes="Bold"
                 VerticalOptions="Center"
                 Text="{Binding Description}"/>
               <Label
+                TextColor="Black"
                 VerticalOptions="Center"
                 Text="{Binding Price, StringFormat='{0:C2}'}"/>
             </StackLayout>
@@ -33,6 +35,8 @@
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-  </ListView>            
-
+  </ListView>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddFlowerCommand}"/>
+  </ContentPage.ToolbarItems>    
 </ContentPage>
