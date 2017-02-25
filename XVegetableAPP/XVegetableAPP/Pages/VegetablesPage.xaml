@@ -16,7 +16,7 @@
               <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image
-              Source="icon.png"
+              Source="icono.png"
               VerticalOptions="Start"
               WidthRequest="50"
               HeightRequest="50"/>
