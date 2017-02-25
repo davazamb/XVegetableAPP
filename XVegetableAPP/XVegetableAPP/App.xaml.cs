@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using XVegetableAPP.Pages;
 
 namespace XVegetableAPP
 {
@@ -13,7 +14,7 @@ namespace XVegetableAPP
         {
             InitializeComponent();
 
-            MainPage = new XVegetableAPP.MainPage();
+            MainPage = new NavigationPage(new VegetablesPage());
         }
 
         protected override void OnStart()
