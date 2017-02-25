@@ -16,6 +16,7 @@ namespace XVegetableAPP.ViewModels
         #region Attributes
         private ApiService apiService;
         private NavigationService navigationService;
+        private DialogService dialogService;
 
         #endregion
 
@@ -32,9 +33,18 @@ namespace XVegetableAPP.ViewModels
         #region Constructors
         public MainViewModel()
         {
+            //Singleton
+            instance = this;
+
+            //Services
             apiService = new ApiService();
-            Vegetables = new ObservableCollection<VegetableItemViewModel>();
             navigationService = new NavigationService();
+            dialogService = new DialogService();
+
+            //View Models
+            Vegetables = new ObservableCollection<VegetableItemViewModel>();
+
+            //Load Data
             LoadVegetables();
         }  
 
@@ -43,8 +53,13 @@ namespace XVegetableAPP.ViewModels
         #region Methods
         private async void LoadVegetables()
         {
-            var vegetables = await apiService.Get<Vegetable>("http://vegetableapi.azurewebsites.net", "/api", "/Vegetables");
-            ReloadVegetables(vegetables);
+            var response = await apiService.Get<Vegetable>("http://vegetableapi.azurewebsites.net", "/api", "/Vegetables");
+            if (!response.IsSuccess)
+            {
+                await dialogService.ShowMessage("Error", response.Message);
+                return;
+            }
+            ReloadVegetables((List<Vegetable>)response.Result);
         }
 
         private void ReloadVegetables(List<Vegetable> vegetables)
@@ -65,7 +80,24 @@ namespace XVegetableAPP.ViewModels
 
         #region Properties
         public ObservableCollection<VegetableItemViewModel> Vegetables { get; set; }
+        public NewVegetableViewModel NewVegetable { get; set; }
+        #endregion
+
+        #region Singleton
+
+        private static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainViewModel();
+            }
+
+            return instance;
+        }
 
         #endregion
+
     }
 }

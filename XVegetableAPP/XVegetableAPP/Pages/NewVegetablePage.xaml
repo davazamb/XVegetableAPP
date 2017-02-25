@@ -2,7 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XVegetableAPP.Pages.NewVegetablePage"
-             Title="New Vegetable"
+             Title="Add Vegetable"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <StackLayout
+    Padding="8"
+    BindingContext="{Binding NewVegetable}">
+    <Label
+      Text="Description">
+    </Label>
+    <Entry
+      Text="{Binding Descrpition, Mode=TwoWay}"
+      Placeholder="Enter a description...">
+    </Entry>
+    <Label
+      Text="Price">
+    </Label>
+    <Entry
+      Text="{Binding Price, Mode=TwoWay}"
+      Keyboard="Numeric"
+      Placeholder="Enter a price...">
+    </Entry>
+    <ActivityIndicator
+      IsRunning="{Binding IsRunning, Mode=TwoWay}">
+    </ActivityIndicator>
+    <Button
+      Command="{Binding NewVegetableCommand}"
+      IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+      BorderRadius="20"
+      HeightRequest="40"
+      BackgroundColor="Blue"
+      TextColor="White"
+      Text="New">
+    </Button>  
+  </StackLayout>
 </ContentPage>

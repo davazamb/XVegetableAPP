@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XVegetableAPP.Pages;
+using XVegetableAPP.ViewModels;
 
 namespace XVegetableAPP.Services
 {
@@ -14,6 +15,8 @@ namespace XVegetableAPP.Services
             switch (pageName)
             {
                 case "NewVegetablePage":
+                    var mainViewModel = MainViewModel.GetInstance();
+                    mainViewModel.NewVegetable = new NewVegetableViewModel();  
                     await App.Current.MainPage.Navigation.PushAsync(new NewVegetablePage());
                     break;
                 default:
