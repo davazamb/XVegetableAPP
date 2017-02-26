@@ -90,6 +90,7 @@ namespace XVegetableAPP.ViewModels
         #region Properties
         public ObservableCollection<VegetableItemViewModel> Vegetables { get; set; }
         public NewVegetableViewModel NewVegetable { get; set; }
+        public EditVegetableViewModel EditVegetable { get; set; }
         public bool IsRefreshing
         {
             set

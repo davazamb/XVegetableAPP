@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XVegetableAPP.Models;
 using XVegetableAPP.Pages;
 using XVegetableAPP.ViewModels;
 
@@ -12,17 +13,26 @@ namespace XVegetableAPP.Services
     {
         public async Task Navigate(string pageName)
         {
+            var mainViewModel = MainViewModel.GetInstance();
+
             switch (pageName)
             {
+                
                 case "NewVegetablePage":
-                    var mainViewModel = MainViewModel.GetInstance();
-                    mainViewModel.NewVegetable = new NewVegetableViewModel();  
+                    mainViewModel.NewVegetable = new NewVegetableViewModel();
                     await App.Current.MainPage.Navigation.PushAsync(new NewVegetablePage());
-                    break;
+                    break; 
                 default:
                     break;
             }
         }
+        public async Task EditVegetable(Vegetable vegetable)
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.EditVegetable = new EditVegetableViewModel(vegetable);
+            await App.Current.MainPage.Navigation.PushAsync(new EditVegetablePage());
+        }
+
 
         public async Task Back()
         {

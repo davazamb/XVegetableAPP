@@ -1,16 +1,19 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XVegetableAPP.Models;
+using XVegetableAPP.Services;
 
 namespace XVegetableAPP.ViewModels
 {
     public class VegetableItemViewModel : Vegetable
     {
         #region Attributes
-
+        private NavigationService navigationService;
         #endregion
 
         #region Commands
@@ -18,7 +21,10 @@ namespace XVegetableAPP.ViewModels
         #endregion
 
         #region Constructors
-
+        public VegetableItemViewModel()
+        {
+            navigationService = new NavigationService();
+        }
         #endregion
 
         #region Methods
@@ -26,8 +32,13 @@ namespace XVegetableAPP.ViewModels
         #endregion
 
         #region Properties
+        public ICommand EditVegetableCommand { get { return new RelayCommand(EditVegetable); } }
 
-        #endregion         
+        private async void EditVegetable()
+        {
+            await navigationService.EditVegetable(this);
+        }
+        #endregion
 
     }
 }
