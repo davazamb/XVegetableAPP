@@ -11,7 +11,7 @@
       Text="Description">
     </Label>
     <Entry
-      Text="{Binding Descrpition, Mode=TwoWay}"
+      Text="{Binding Description, Mode=TwoWay}"
       Placeholder="Enter a description...">
     </Entry>
     <Label

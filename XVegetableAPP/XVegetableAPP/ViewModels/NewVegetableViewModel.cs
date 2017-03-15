@@ -14,7 +14,7 @@ namespace XVegetableAPP.ViewModels
     public class NewVegetableViewModel : INotifyPropertyChanged
     {
         #region Attributes
-        private string descrpition;
+        private string description;
         private decimal price;
         private bool isRunning; 
         private bool isEnabled;
@@ -51,7 +51,7 @@ namespace XVegetableAPP.ViewModels
 
         private async void NewVegetable()
         {
-            if (string.IsNullOrEmpty(Descrpition))
+            if (string.IsNullOrEmpty(Description))
             {
                 await dialogService.ShowMessage("Error", "You must enter a description");
                 return;
@@ -62,15 +62,16 @@ namespace XVegetableAPP.ViewModels
                 await dialogService.ShowMessage("Error", "The price must be greather than zero");
                 return;
             }
-
-            IsRunning = true;
-            IsEnabled = false;
+             
 
             var newVegetable = new Vegetable
             {
-                Description = Descrpition,
+                Description = Description,
                 Price = Price,
             };
+
+            IsRunning = true;
+            IsEnabled = false;
 
             var response = await apiService.Post("http://vegetableapi.azurewebsites.net", "/api", "/Vegetables", newVegetable);
 
@@ -81,10 +82,8 @@ namespace XVegetableAPP.ViewModels
             {
                 await dialogService.ShowMessage("Error", response.Message);
                 return;
-            }
+            }                 
 
-            Descrpition = string.Empty;
-            Price = 0;
             await navigationService.Back();
 
         }
@@ -93,19 +92,19 @@ namespace XVegetableAPP.ViewModels
         #endregion
 
         #region Properties
-        public string Descrpition
+        public string Description
         {
             set
             {
-                if (descrpition != value)
+                if (description != value)
                 {
-                    descrpition = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Descrpition"));
+                    description = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("description"));
                 }
             }
             get
             {
-                return descrpition;
+                return description;
             }
         }
         public decimal Price

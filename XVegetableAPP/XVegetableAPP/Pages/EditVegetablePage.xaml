@@ -29,7 +29,7 @@
       <StackLayout
         Orientation="Horizontal">
         <Button
-          Command="{Binding SaveFlowerCommand}"
+          Command="{Binding SaveVegetableCommand}"
           IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
           BorderRadius="20"
           HeightRequest="40"
@@ -39,7 +39,7 @@
           Text="Save">
         </Button>
         <Button
-          Command="{Binding DeleteFlowerCommand}"
+          Command="{Binding DeleteVegetableCommand}"
           IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
           BorderRadius="20"
           HeightRequest="40"

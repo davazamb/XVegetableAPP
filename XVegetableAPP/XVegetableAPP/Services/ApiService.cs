@@ -127,8 +127,7 @@ namespace XVegetableAPP.Services
                 };
             }
         }
-
-       
+                                                                                                                        
 
         public async Task<Response> Delete<T>(string urlBase, string servicePrefix, string controller, T model)
         {
