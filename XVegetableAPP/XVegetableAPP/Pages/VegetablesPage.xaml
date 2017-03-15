@@ -4,16 +4,16 @@
              x:Class="XVegetableAPP.Pages.VegetablesPage"
              Title="Vegetables"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-  <ListView
+    <ListView
    ItemTemplate="{StaticResource VegetablesDataTemplate}"
    ItemsSource="{Binding Vegetables}"
    HasUnevenRows="True"
    IsPullToRefreshEnabled="True"
    RefreshCommand="{Binding RefreshVegetablesCommand}"
    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
-  </ListView>
+    </ListView>
 
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddVegetableCommand}"/>
-  </ContentPage.ToolbarItems>    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add.png" Command="{Binding AddVegetableCommand}"/>
+    </ContentPage.ToolbarItems>
 </ContentPage>

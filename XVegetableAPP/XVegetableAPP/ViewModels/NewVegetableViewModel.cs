@@ -11,11 +11,9 @@ using XVegetableAPP.Services;
 
 namespace XVegetableAPP.ViewModels
 {
-    public class NewVegetableViewModel : INotifyPropertyChanged
+    public class NewVegetableViewModel : Vegetable, INotifyPropertyChanged
     {
-        #region Attributes
-        private string description;
-        private decimal price;
+        #region Attributes     
         private bool isRunning; 
         private bool isEnabled;
         private ApiService apiService; 
@@ -36,6 +34,7 @@ namespace XVegetableAPP.ViewModels
             dialogService = new DialogService();
             navigationService = new NavigationService();
             IsEnabled = true;
+            LastPurchase = DateTime.Now;
         }
 
 
@@ -68,6 +67,9 @@ namespace XVegetableAPP.ViewModels
             {
                 Description = Description,
                 Price = Price,
+                IsActive = IsActive,
+                LastPurchase = LastPurchase,
+                Observation = Observation,
             };
 
             IsRunning = true;
@@ -91,37 +93,7 @@ namespace XVegetableAPP.ViewModels
 
         #endregion
 
-        #region Properties
-        public string Description
-        {
-            set
-            {
-                if (description != value)
-                {
-                    description = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("description"));
-                }
-            }
-            get
-            {
-                return description;
-            }
-        }
-        public decimal Price
-        {
-            set
-            {
-                if (price != value)
-                {
-                    price = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
-                }
-            }
-            get
-            {
-                return price;
-            }
-        }
+        #region Properties    
         public bool IsRunning
         {
             set

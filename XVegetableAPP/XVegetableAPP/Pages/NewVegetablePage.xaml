@@ -4,28 +4,43 @@
              x:Class="XVegetableAPP.Pages.NewVegetablePage"
              Title="Add Vegetable"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-  <StackLayout
+    <ScrollView>
+        <StackLayout
     Padding="8"
     BindingContext="{Binding NewVegetable}">
-    <Label
+            <Label
       Text="Description">
-    </Label>
-    <Entry
+            </Label>
+            <Entry
       Text="{Binding Description, Mode=TwoWay}"
       Placeholder="Enter a description...">
-    </Entry>
-    <Label
+            </Entry>
+            <Label
       Text="Price">
-    </Label>
-    <Entry
+            </Label>
+            <Entry
       Text="{Binding Price, Mode=TwoWay}"
       Keyboard="Numeric"
       Placeholder="Enter a price...">
-    </Entry>
-    <ActivityIndicator
+            </Entry>
+            <Label
+      Text="Last purchase">
+            </Label>
+            <DatePicker Date="{Binding LastPurchase, Mode=TwoWay}">
+            </DatePicker>
+            <Label
+      Text="Is active">
+            </Label>
+            <Switch IsToggled="{Binding IsActive, Mode=TwoWay}"></Switch>
+            <Label
+      Text="Observation">
+            </Label>
+            <Editor Text="{Binding Observation, Mode=TwoWay}"></Editor>
+
+            <ActivityIndicator
       IsRunning="{Binding IsRunning, Mode=TwoWay}">
-    </ActivityIndicator>
-    <Button
+            </ActivityIndicator>
+            <Button
       Command="{Binding NewVegetableCommand}"
       IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
       BorderRadius="20"
@@ -33,6 +48,7 @@
       BackgroundColor="Blue"
       TextColor="White"
       Text="New">
-    </Button>  
-  </StackLayout>
+            </Button>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

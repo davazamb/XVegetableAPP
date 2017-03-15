@@ -23,7 +23,20 @@
         Keyboard="Numeric"
         Placeholder="Enter a price...">
       </Entry>
-      <ActivityIndicator
+            <Label
+      Text="Last purchase">
+            </Label>
+            <DatePicker Date="{Binding LastPurchase, Mode=TwoWay}">
+            </DatePicker>
+            <Label
+      Text="Is active">
+            </Label>
+            <Switch IsToggled="{Binding IsActive, Mode=TwoWay}"></Switch>
+            <Label
+      Text="Observation">
+            </Label>
+            <Editor Text="{Binding Observation, Mode=TwoWay}"></Editor>
+            <ActivityIndicator
         IsRunning="{Binding IsRunning, Mode=TwoWay}">
       </ActivityIndicator>
       <StackLayout

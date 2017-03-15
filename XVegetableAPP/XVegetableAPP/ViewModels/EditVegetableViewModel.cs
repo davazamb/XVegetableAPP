@@ -37,6 +37,10 @@ namespace XVegetableAPP.ViewModels
             Description = vegetable.Description;
             Price = vegetable.Price;
             VegetableId = vegetable.VegetableId;
+            LastPurchase = vegetable.LastPurchase;
+            IsActive = vegetable.IsActive;
+            Observation = vegetable.Observation;
+            Image = vegetable.Image;
 
             IsEnabled = true;
 

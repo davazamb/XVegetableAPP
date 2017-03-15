@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:infra="clr-namespace:XVegetableAPP.Infrastructure;assembly=XVegetableAPP" 
              x:Class="XVegetableAPP.App">
-    <Application.Resources>     
+    <Application.Resources>
         <!-- Application resource dictionary -->
         <ResourceDictionary>
             <!-- Locator -->
@@ -20,22 +20,40 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Image
-              Source="icono.png"
+              Source="{Binding ImageFullPath}"
               VerticalOptions="Start"
-              WidthRequest="50"
-              HeightRequest="50"/>
+              WidthRequest="80"
+              HeightRequest="80"/>
                         <StackLayout Grid.Column="1">
                             <Label
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                Text="{Binding Description}"/>
+                    FontSize="Medium"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    Text="{Binding Description}"/>
                             <Label
-                VerticalOptions="Center"
-                Text="{Binding Price, StringFormat='{0:C2}'}"/>
+                    TextColor="Black"                                     
+                    VerticalOptions="Center"
+                    Text="{Binding Price, StringFormat='Price: {0:C2}'}"/>
+                            <Label
+                    TextColor="Black"                                     
+                    VerticalOptions="Center"
+                    Text="{Binding LastPurchase, StringFormat='Last Purchase: {0:yyyy/MM/dd}'}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                    TextColor="Black"                                     
+                    HorizontalOptions="StartAndExpand"
+                    Text="Is Active" />
+                                <Switch IsToggled="{Binding IsActive}"
+                                        HorizontalOptions="End"
+                                        IsEnabled="False">
+                                </Switch>
+                            </StackLayout>
+                            
                         </StackLayout>
                     </Grid>
                 </ViewCell>
-            </DataTemplate> 
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
