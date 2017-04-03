@@ -40,6 +40,7 @@ namespace XVegetableAPP.UWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
+
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

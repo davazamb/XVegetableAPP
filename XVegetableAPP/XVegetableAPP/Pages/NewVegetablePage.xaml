@@ -37,9 +37,23 @@
             </Label>
             <Editor Text="{Binding Observation, Mode=TwoWay}"></Editor>
 
-            <ActivityIndicator
-      IsRunning="{Binding IsRunning, Mode=TwoWay}">
-            </ActivityIndicator>
+            <StackLayout Orientation="Horizontal">
+                <Image
+                    HorizontalOptions="StartAndExpand"
+                    Source="ic_add_a_photo.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TakePictureCommand}">                              
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>                     
+                </Image>
+                <ActivityIndicator
+                    HorizontalOptions="EndAndExpand"
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">                    
+                </ActivityIndicator>                                             
+            </StackLayout>
+            <Image
+                Source="{Binding ImageSource, Mode=TwoWay}">                         
+            </Image>
             <Button
       Command="{Binding NewVegetableCommand}"
       IsEnabled="{Binding IsEnabled, Mode=TwoWay}"

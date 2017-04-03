@@ -17,6 +17,7 @@ namespace XVegetableAPP.Models
         public string Image { get; set; }  
         public bool IsActive { get; set; }  
         public string Observation { get; set; }
+        public byte[] ImageArray { get; set; }    
 
         public string ImageFullPath
         { get
